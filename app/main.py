@@ -1,8 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
 
-
-
 from app.api.employee import employee_bp
 from app.api.cart import cart_bp
 from app.api.auth import auth_bp
@@ -21,7 +19,6 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(menu_bp)
 app.register_blueprint(order_bp)
 init_db(app)
-
 app.register_blueprint(user_bp)
 app.register_blueprint(profile_bp)
 
