@@ -16,18 +16,22 @@ def get_menu():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
 
-    # Get all categories
-    cursor.execute("SELECT id, name FROM menu_categories")
+    # Get all categories in id order (eating order)
+    cursor.execute("SELECT id, name FROM menu_categories ORDER BY id ASC")
     categories = cursor.fetchall()
 
-    menu = {}
+    menu = []
     for category in categories:
         cursor.execute(
             "SELECT id, name, price FROM menu_items WHERE category_id = %s",
             (category["id"],)
         )
         items = cursor.fetchall()
-        menu[category["name"]] = items
+        menu.append({
+            "id": category["id"],
+            "name": category["name"],
+            "items": items
+        })
 
     cursor.close()
     conn.close()

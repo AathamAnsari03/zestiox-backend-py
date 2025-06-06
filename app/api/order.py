@@ -34,15 +34,14 @@ def get_orders(user_id):
     conn.close()
     return jsonify(orders)
 
-@order_bp.route('/orders/<int:order_id>/cansel', methods=['POST'])
-def cancel_order(order_id):
-    HARD_CODED_USER_ID = 2  # For testing only
+@order_bp.route('/orders/cancel/<int:order_id>', methods=['PUT', 'POST'])
+def cancel_order(order_id): 
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    # Check if order exists and belongs to user, and is not already delivered/cancelled
+    # Check if order exists and is not already delivered/cancelled
     cursor.execute("""
-        SELECT status FROM orders WHERE id = %s AND user_id = %s
-    """, (order_id, HARD_CODED_USER_ID))
+        SELECT status FROM orders WHERE id = %s
+    """, (order_id,))
     order = cursor.fetchone()
     if not order or order['status'] in ('Delivered', 'Cancelled'):
         cursor.close()
