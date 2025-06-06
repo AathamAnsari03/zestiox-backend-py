@@ -8,7 +8,7 @@ def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",                     # Change if your MySQL user is different
-        password="Senthamil@14",         # Change if your MySQL password is set
+        password="MySql@123",         # Change if your MySQL password is set
         database="zestiox"
     )
 
