@@ -5,13 +5,11 @@ from flask_cors import CORS
 
 from app.api.employee import employee_bp
 from app.api.cart import cart_bp
-from flask_cors import CORS
 from app.api.auth import auth_bp
 from app.api.menu import menu_bp
 from app.api.order import order_bp
 from app.api.user import user_bp
 from app.db.database import init_db
-from flask_cors import CORS
 from app.api.profile import profile_bp
 
 app = Flask(__name__)
