@@ -80,3 +80,4 @@ Desktop.ini
 # Local SQLite database
 *.sqlite3
 *.db
+/.vs
